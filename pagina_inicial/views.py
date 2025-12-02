@@ -1,26 +1,35 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from .forms import SignInForm, SignUpForm
 
 def home(request):
     return render(request, 'pagina_inicial/home.html')
 
 def login_cadastro(request):
     if request.method == "GET":
-        return render(request, 'pagina_inicial/login_cadastro.html', { "next": request.GET.get("next") })
+        return render(request, "pagina_inicial/login_cadastro.html", { "form": SignInForm, "next": request.GET.get("next") })
     else:
-        username = request.POST.get("username")
-        password = request.POST.get("password")
-        next = request.POST.get("next")
+        post = request.POST
+        form = SignInForm(post)
+        username = post.get("username")
+        password = post.get("password")
+        next = post.get("next")
         user = authenticate(username=username, password=password)
-        if user:
+        if form.is_valid() and user:
             login(request, user)
-            if next and next != "None":
+            if next != "None":
                 return redirect(next)
             else:
                 return redirect("/")
         else:
-            return render(request, 'pagina_inicial/login_cadastro.html')
+            form.add_error("password", "")
+            form.add_error("username", "")
+            for k in form.errors.keys():
+                form.fields[k].widget.attrs['class'] += ' is-invalid'
+            form.add_error("", "Usuário / Senha inválido")
+            return render(request, "pagina_inicial/login_cadastro.html", { "form": form, "next":next })
+ 
 
 def logout_usuario(request):
     logout(request)
@@ -28,20 +37,28 @@ def logout_usuario(request):
 
 
 def cadastro_usuario(request):
-	if request.method == "GET":
-		return render(request, "pagina_inicial/cadastro_usuario.html")
-	else:
-		post = request.POST
-		user = User.objects.create_user(
-			username = post.get("username"),
-			email = post.get("email"),
-			first_name = post.get("first_name"),
-			last_name = post.get("last_name"),
-			password = post.get("password")
-		)
-		user = authenticate(
-			username=post.get("username"),
-			password=post.get("password")
-		)
-		login(request, user)
-		return redirect("/")
+    if request.method == "GET":
+        return render(request, "pagina_inicial/cadastro_usuario.html", { "form": SignUpForm })
+    else:
+        post = request.POST
+        form = SignUpForm(post)
+        if form.is_valid():
+            user = User.objects.create_user(
+                username = post.get("username"),
+                email = post.get("email"),
+                first_name = post.get("first_name"),
+                last_name = post.get("last_name"),
+                password = post.get("password")
+            )
+            user = authenticate(
+                username=post.get("username"),
+                password=post.get("password")
+            )
+            login(request, user)
+            return redirect("/")
+        else:
+            for k in form.errors.keys():
+                form.fields[k].widget.attrs['class'] += ' is-invalid'
+            form.add_error(None, "Erro(s) foram encontrado(s) ao criar a conta. Favor fazer a devidas correções e tentar novamente.")
+            return render(request, "pagina_inicial/cadastro_usuario.html", { "form": form })
+        
