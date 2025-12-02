@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
  
-class SignUpForm(forms.Form):
+class CadastroUsuarioForm(forms.Form):
   username = forms.CharField(
     label = "Usuário",
     max_length = 255
@@ -45,7 +45,7 @@ class SignUpForm(forms.Form):
       if not 'placeholder' in self.fields[field].widget.attrs:
         self.fields[field].widget.attrs['placeholder'] = self.fields[field].label
  
-class SignInForm(forms.Form):
+class LoginUsuarioForm(forms.Form):
   username = forms.CharField(
     label = "Usuário",
     max_length=255

@@ -1,17 +1,17 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .forms import SignInForm, SignUpForm
+from .forms import LoginUsuarioForm, CadastroUsuarioForm
 
 def home(request):
     return render(request, 'pagina_inicial/home.html')
 
-def login_cadastro(request):
+def login_usuario(request):
     if request.method == "GET":
-        return render(request, "pagina_inicial/login_cadastro.html", { "form": SignInForm, "next": request.GET.get("next") })
+        return render(request, "pagina_inicial/login_usuario.html", { "form": LoginUsuarioForm, "next": request.GET.get("next") })
     else:
         post = request.POST
-        form = SignInForm(post)
+        form = LoginUsuarioForm(post)
         username = post.get("username")
         password = post.get("password")
         next = post.get("next")
@@ -28,7 +28,7 @@ def login_cadastro(request):
             for k in form.errors.keys():
                 form.fields[k].widget.attrs['class'] += ' is-invalid'
             form.add_error("", "Usuário / Senha inválido")
-            return render(request, "pagina_inicial/login_cadastro.html", { "form": form, "next":next })
+            return render(request, "pagina_inicial/login_usuario.html", { "form": form, "next":next })
  
 
 def logout_usuario(request):
@@ -38,10 +38,10 @@ def logout_usuario(request):
 
 def cadastro_usuario(request):
     if request.method == "GET":
-        return render(request, "pagina_inicial/cadastro_usuario.html", { "form": SignUpForm })
+        return render(request, "pagina_inicial/cadastro_usuario.html", { "form": CadastroUsuarioForm })
     else:
         post = request.POST
-        form = SignUpForm(post)
+        form = CadastroUsuarioForm(post)
         if form.is_valid():
             user = User.objects.create_user(
                 username = post.get("username"),
