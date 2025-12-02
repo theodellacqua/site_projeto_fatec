@@ -8,17 +8,21 @@
                 <h2 class="my-5">Login</h2>
                 {% csrf_token %}
 
-                <!-- Username input -->
+                {% for field in form %}
                 <div data-mdb-input-init class="form-outline mb-4">
-                    <label class="form-label" for="username">Usuário</label>
-                    <input type="text" class="form-control" name="username" placeholder="Usuário" id="username" />
+                    <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
                 </div>
+                {% endfor %}
 
-                <!-- Password input -->
-                <div data-mdb-input-init class="form-outline mb-4">
-                    <label class="form-label" for="password">Senha</label>
-                    <input type="password" id="password" class="form-control" name="password" placeholder="Senha" />
-                </div>
+                {% if form.non_field_errors %}
+                <ul class="list-unstyled text-danger">
+                    {% for erro in form.non_field_errors %}
+                    <li>{{ erro }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
                 <!-- Submit button -->
                 <button type="submit" data-mdb-button-init data-mdb-ripple-init
                     class="btn btn-primary btn-block mb-4">Entrar</button>
