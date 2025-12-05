@@ -72,19 +72,15 @@
         <p>
             A EGA Soluções Industriais é uma empresa brasileira fundada em 1988, que atua há mais de três décadas no
             desenvolvimento de soluções tecnológicas voltadas para a gestão da produção industrial. Com sede no Brasil
-            e capital 100% nacional, a empresa se consolidou como uma fornecedora de sistemas MES (Manufacturing
-            Execution System), ferramentas fundamentais para o monitoramento e controle em tempo real das operações
-            de manufatura.
+            e capital 100% nacional, a empresa se consolidou como uma fornecedora de sistemas MES (Manufacturing Execution System),
+            ferramentas fundamentais para o monitoramento e controle em tempo real das operações de manufatura. Seu foco é oferecer
+            soluções completas que integram hardware e software, possibilitando às indústrias maior eficiência operacional,
+            redução de desperdícios e aumento da produtividade, alinhando-se às demandas da chamada Indústria 4.0.
         </p>
         <p>
-            Seu foco é oferecer soluções completas que integram hardware e software, possibilitando às indústrias maior
-            eficiência operacional, redução de desperdícios e aumento da produtividade, alinhando-se às demandas da
-            Indústria 4.0.
-        </p>
-        <p>
-            O portfólio da EGA abrange funcionalidades que permitem acompanhar o desempenho das máquinas e processos,
-            calcular indicadores como OEE, gerenciar qualidade, rastrear produtos, controlar inventários e monitorar o consumo
-            de energia. Suas soluções integram-se com sistemas ERP e incluem recursos móveis para acompanhamento remoto.
+            O portfólio da EGA abrange funcionalidades que permitem acompanhar o desempenho das máquinas e processos, 
+            calcular indicadores como OEE (Eficiência Global dos Equipamentos), gerenciar a qualidade dos produtos, realizar rastreabilidade, 
+            controlar inventários e até mesmo monitorar o consumo de energia.
         </p>
     </div>
 
@@ -92,23 +88,29 @@
         <h2>Sobre o Site</h2>
         <p>
             O website foi desenvolvido utilizando Python e Django. Nele, é possível realizar cadastro e login, caso o usuário
-            já possua uma conta. No cadastro, é necessário informar nome de usuário, nome, sobrenome, e-mail, senha e
-            confirmação de senha. O sistema valida cada campo, exibindo mensagens específicas quando algo precisa ser
-            corrigido.
+            já possua uma conta. No cadastro, é necessário informar nome de usuário, nome, sobrenome, e-mail, senha e confirmação de senha. 
+            Para realizar o login, o usuário deve fornecer o nome de usuário e a senha.
         </p>
         <p>
-            No login, caso o usuário informe credenciais incorretas, o sistema também exibe mensagens orientativas. Há ainda
-            a opção de logout, permitindo que o usuário encerre a sessão.
+            O sistema realiza diversas validações durante o cadastro, verificando, por exemplo, se nenhum campo foi deixado em branco, 
+            se o nome de usuário ainda não existe no sistema e se o e-mail está no formato correto (contendo “@” e “.”). Para cada verificação, 
+            o site exibe uma mensagem específica na própria guia do campo correspondente — seja no nome, sobrenome, e-mail, senha ou confirmação 
+            de senha — orientando o usuário sobre o que precisa ser corrigido. No login, caso o usuário informe um nome de usuário ou senha incorretos, 
+            também é exibida uma mensagem orientando sobre o erro. Além disso, o site oferece a opção de logout(sair), permitindo que o 
+            usuário saia da conta atual caso deseje trocar de usuário ou simplesmente encerrar sua sessão.
         </p>
         <p>
-            O site permite acessar as análises de Machine Learning desenvolvidas no projeto, conectadas diretamente ao banco
-            de dados, de forma que qualquer alteração impacta automaticamente as análises. Também é possível visualizar os
-            Dashboards integrados do Power BI, atualizados dinamicamente.
+            O site permite acessar as análises de Machine Learning desenvolvidas no projeto. Ele está conectado ao banco de dados, portanto, 
+            qualquer modificação no banco afeta diretamente as análises disponíveis. Também é possível visualizar os Dashboards criados no Power BI, 
+            que estão integrados ao website, alterações feitas no Power BI são refletidas automaticamente no site.
         </p>
         <p>
-            Para acessar as análises ou dashboards, é necessário estar logado. Há ainda uma página administrativa restrita, onde
-            é possível visualizar o banco de dados e os usuários cadastrados.  
-            O website está hospedado na Vercel, permitindo acesso público pelo link disponibilizado.
+            Para acessar as análises de Machine Learning ou os Dashboards, é necessário ter uma conta e estar logado, garantindo maior segurança. 
+            O site conta ainda com uma página administrativa, acessível apenas por contas autorizadas, onde é possível visualizar o banco de dados 
+            e a lista de usuários cadastrados.
+        </p>
+        <p>
+            O website está hospedado no Vercel, o que permite que qualquer pessoa possa acessá-lo por meio do link disponibilizado.
         </p>
     </div>
 
