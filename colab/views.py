@@ -279,7 +279,7 @@ def grafico_3(request):
 
 @login_required
 def powerbi(request):
-    powerbi_link = "https://app.powerbi.com/view?r=eyJrIjoiNmRiMGE0YWItNGQ4ZS00MTliLWFkNmYtZjZhOTFiMzVkYWQzIiwidCI6ImNmNzJlMmJkLTdhMmItNDc4My1iZGViLTM5ZDU3YjA3Zjc2ZiIsImMiOjR9"
+    powerbi_link = "https://app.powerbi.com/view?r=eyJrIjoiODgyZmU5ZDEtNWQxYi00N2YwLTk5ZWMtZDMwYmU1ZWE2ZjVhIiwidCI6ImNmNzJlMmJkLTdhMmItNDc4My1iZGViLTM5ZDU3YjA3Zjc2ZiIsImMiOjR9"
     return render(request, "colab/powerbi.html", {
         "powerbi_url": powerbi_link
     })
